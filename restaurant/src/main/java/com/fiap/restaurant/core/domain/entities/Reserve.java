@@ -4,6 +4,19 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Reserve {
+    private UUID id;
+    private String nameRestaurant;
+    private LocalDateTime dateReserve;
+    private String fullNameUser;
+    private String phoneUser;
+
+    public void setQuantityPeopleReserve(int quantityPeopleReserve) {
+        this.quantityPeopleReserve = quantityPeopleReserve;
+    }
+
+    private int quantityPeopleReserve;
+    private int numberTableReserve;
+    private boolean tableReserved;
     public UUID getId() {
         return id;
     }
@@ -48,17 +61,25 @@ public class Reserve {
         return quantityPeopleReserve;
     }
 
-    public void setQuantityPeopleReserve(int quantityPeopleReserve) {
-        this.quantityPeopleReserve = quantityPeopleReserve;
+    public int getNumberTableReserve() {
+        return numberTableReserve;
     }
 
-    private UUID id;
-    private String nameRestaurant;
-    private LocalDateTime dateReserve;
-    private String fullNameUser;
-    private String phoneUser;
-    private int quantityPeopleReserve;
-    public Reserve(UUID id, String nameRestaurant, LocalDateTime dateReserve, String fullNameUser, String phoneUser, int quantityPeopleReserve) {
+    public void setNumberTableReserve(int numberTableReserve) {
+        this.numberTableReserve = numberTableReserve;
+    }
+
+    public boolean isTableReserved() {
+        return tableReserved;
+    }
+
+    public void setTableReserved(boolean tableReserved) {
+        this.tableReserved = tableReserved;
+    }
+
+
+
+    public Reserve(UUID id, String nameRestaurant, LocalDateTime dateReserve, String fullNameUser, String phoneUser, int quantityPeopleReserve, int numberTableReserve, boolean tableReserved) {
 
         if(nameRestaurant.isEmpty() || dateReserve == null || fullNameUser.isEmpty() || phoneUser.isEmpty() || quantityPeopleReserve <= 0){
             throw new IllegalArgumentException("Campo não pode estar vazio.");
@@ -70,6 +91,9 @@ public class Reserve {
         this.fullNameUser = fullNameUser;
         this.phoneUser = phoneUser;
         this.quantityPeopleReserve = quantityPeopleReserve;
+        this.numberTableReserve = numberTableReserve;
+        this.tableReserved = tableReserved;
+
     }
 
 
