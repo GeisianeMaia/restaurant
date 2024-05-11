@@ -29,7 +29,7 @@ public class ReserveController {
         return this.reservationManagementUseCase.getListReserve();
     }
 
-    @GetMapping(value = "/id")
+    @GetMapping("/{id}")
     public ResponseEntity<Object> getReserveById (@PathVariable UUID id){
         try {
             Optional<Reserve> reserveOptional = reservationManagementUseCase.getReserveById(id);
@@ -44,7 +44,7 @@ public class ReserveController {
         return this.tableReservationUseCase.createReserveTableRestaurant(reserve);
     }
 
-    @PostMapping(value = "/updateStatus")
+    @PutMapping(value = "/updateStatus/{id}")
     public ResponseEntity<Object> updateStatusTableReserve(@PathVariable UUID id,@RequestBody Reserve reserve){
         try {
             Reserve updatedStatusTable = reservationManagementUseCase.updateStatusTableReserve(id, reserve);

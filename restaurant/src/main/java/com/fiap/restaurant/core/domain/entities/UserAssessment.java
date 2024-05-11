@@ -1,24 +1,21 @@
 package com.fiap.restaurant.core.domain.entities;
 
-import lombok.Builder;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Builder
+@Entity
 public class UserAssessment {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String nameUser;
     private String messageAssessment;
     private String nameRestaurantAssessment;
     private LocalDateTime dateVisitedRestaurant;
-
-    @Builder.Default
-    private LocalDateTime dateAssessment = LocalDateTime.now();
-
-    @Builder.Default
-    private int like = 0;
-
+    private LocalDateTime dateAssessment;
+    private int like;
     public UUID getId() {
         return id;
     }
@@ -75,16 +72,21 @@ public class UserAssessment {
         this.like = like;
     }
 
+    public UserAssessment(){
 
+    }
     public UserAssessment(UUID id, String nameUser, String messageAssessment, String nameRestaurantAssessment, LocalDateTime dateVisitedRestaurant, LocalDateTime dateAssessment, int like) {
         this.id = id;
         this.nameUser = nameUser;
         this.messageAssessment = messageAssessment;
         this.nameRestaurantAssessment = nameRestaurantAssessment;
         this.dateVisitedRestaurant = dateVisitedRestaurant;
-        this.dateAssessment = LocalDateTime.now();
-        this.like = 0;
+        this.dateAssessment = dateAssessment;
+        this.like = like;
     }
+
+
+
 
 
 }

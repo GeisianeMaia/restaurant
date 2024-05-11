@@ -4,19 +4,25 @@ import com.fiap.restaurant.core.domain.entities.Restaurant;
 import com.fiap.restaurant.core.usecases.SearchRestaurantUseCase;
 import com.fiap.restaurant.infrastructure.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
-
+@Service
 public class SearchRestaurantUseCaseImpl implements SearchRestaurantUseCase {
-    @Autowired
-    private RestaurantRepository restaurantRepository;
-    @Override
+
+    private final RestaurantRepository restaurantRepository;
+
+    public SearchRestaurantUseCaseImpl(RestaurantRepository restaurantRepository) {
+        this.restaurantRepository = restaurantRepository;
+    }
+
+
     public List<Restaurant> getListRestaurants() {
         return this.restaurantRepository.findAll();
     }
 
-    @Override
+
     public List<Restaurant> searchRestaurants(UUID id, String address, String typeKitchen) {
         if (id != null) {
             return List.of(restaurantRepository.findById(id).orElse(null));

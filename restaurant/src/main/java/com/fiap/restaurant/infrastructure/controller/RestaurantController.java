@@ -25,7 +25,7 @@ public class RestaurantController {
 
     }
 
-    @GetMapping(value = "/restaurants")
+    @GetMapping(value = "/search-restaurants")
     public ResponseEntity<List<Restaurant>> searchRestaurants(@RequestParam(required = false) UUID id,
                                                               @RequestParam(required = false) String address,
                                                               @RequestParam(required = false) String typeKitchen){

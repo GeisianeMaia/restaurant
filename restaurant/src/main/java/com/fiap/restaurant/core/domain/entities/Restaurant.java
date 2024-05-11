@@ -1,10 +1,17 @@
 package com.fiap.restaurant.core.domain.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
-
+@Entity
 public class Restaurant {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     private String name;
@@ -15,6 +22,8 @@ public class Restaurant {
     private int limitPeople;
 
 
+    public Restaurant() {
+    }
     public Restaurant(UUID id, String name, String address, String typeKitchen, String hoursOpening, String daysWeekOpening, int limitPeople) {
 
         if(name.isEmpty() || address.isEmpty() || typeKitchen.isEmpty() || hoursOpening.isEmpty() || daysWeekOpening.isEmpty() || limitPeople <= 0){

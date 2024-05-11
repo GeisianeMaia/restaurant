@@ -1,22 +1,31 @@
 package com.fiap.restaurant.core.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
-
+@Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Reserve {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String nameRestaurant;
     private LocalDateTime dateReserve;
     private String fullNameUser;
     private String phoneUser;
 
-    public void setQuantityPeopleReserve(int quantityPeopleReserve) {
-        this.quantityPeopleReserve = quantityPeopleReserve;
-    }
-
     private int quantityPeopleReserve;
     private int numberTableReserve;
     private boolean tableReserved;
+
+    public void setQuantityPeopleReserve(int quantityPeopleReserve) {
+        this.quantityPeopleReserve = quantityPeopleReserve;
+    }
     public UUID getId() {
         return id;
     }
@@ -77,7 +86,7 @@ public class Reserve {
         this.tableReserved = tableReserved;
     }
 
-
+    public Reserve(){}
 
     public Reserve(UUID id, String nameRestaurant, LocalDateTime dateReserve, String fullNameUser, String phoneUser, int quantityPeopleReserve, int numberTableReserve, boolean tableReserved) {
 

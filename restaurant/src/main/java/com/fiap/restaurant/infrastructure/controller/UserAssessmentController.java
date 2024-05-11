@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(value = "/assessmentUsers")
+@RequestMapping(value = "/assessment")
 public class UserAssessmentController {
     @Autowired
     private AssessmentCommentsUsersUseCase assessmentCommentsUsersUseCase;
@@ -22,7 +22,7 @@ public class UserAssessmentController {
         return this.assessmentCommentsUsersUseCase.getListAssessment();
     }
 
-    @GetMapping(value = "/id")
+    @GetMapping("/{id}")
     public ResponseEntity<Object> getAssessmentById (@PathVariable UUID id){
         try {
             Optional<UserAssessment> userAssessmentOptional = assessmentCommentsUsersUseCase.getAssessmentById(id);

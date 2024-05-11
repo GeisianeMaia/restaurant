@@ -5,25 +5,32 @@ import com.fiap.restaurant.core.domain.entities.UserAssessment;
 import com.fiap.restaurant.core.usecases.ReservationManagementUseCase;
 import com.fiap.restaurant.infrastructure.repository.ReserveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public class ReservationManagementUseCaseImpl implements ReservationManagementUseCase {
-    @Autowired
-    private ReserveRepository reserveRepository;
-    @Override
+
+    private final ReserveRepository reserveRepository;
+
+    public ReservationManagementUseCaseImpl(ReserveRepository reserveRepository) {
+        this.reserveRepository = reserveRepository;
+    }
+
+
     public List<Reserve> getListReserve() {
         return this.reserveRepository.findAll();
     }
 
-    @Override
+
     public Optional<Reserve> getReserveById(UUID id) {
         return this.reserveRepository.findById(id);
     }
 
-    @Override
+
     public Reserve updateStatusTableReserve(UUID id, Reserve reserve) {
 
          Reserve searchReserve = reserveRepository.getOne(id);
@@ -35,7 +42,7 @@ public class ReservationManagementUseCaseImpl implements ReservationManagementUs
          searchReserve.setTableReserved(reserve.isTableReserved());
          searchReserve.setQuantityPeopleReserve(reserve.getQuantityPeopleReserve());
 
-         return searchReserve;
+         return reserveRepository.save(searchReserve);
 
     }
 }

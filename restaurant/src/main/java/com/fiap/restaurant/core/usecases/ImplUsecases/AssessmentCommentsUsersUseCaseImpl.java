@@ -12,24 +12,26 @@ import java.util.UUID;
 
 @Service
 public class AssessmentCommentsUsersUseCaseImpl implements AssessmentCommentsUsersUseCase {
-    @Autowired
-    private UserAssessmentRepository userAssessmentRepository;
-    @Override
+
+    private final UserAssessmentRepository userAssessmentRepository;
+
+    public AssessmentCommentsUsersUseCaseImpl(UserAssessmentRepository userAssessmentRepository) {
+        this.userAssessmentRepository = userAssessmentRepository;
+    }
+
     public UserAssessment createPostAssessmentCommentsUsers(UserAssessment userAssessment) {
         return this.userAssessmentRepository.save(userAssessment);
     }
 
-    @Override
     public List<UserAssessment> getListAssessment() {
         return this.userAssessmentRepository.findAll();
     }
 
-    @Override
     public Optional<UserAssessment> getAssessmentById(UUID id) {
         return this.userAssessmentRepository.findById(id);
     }
 
-    @Override
+
     public UserAssessment updateAssessment(UUID id, UserAssessment userAssessment) {
         UserAssessment searchUserAssessment = userAssessmentRepository.getOne(id);
         searchUserAssessment.setNameUser(userAssessment.getNameUser());
@@ -37,10 +39,10 @@ public class AssessmentCommentsUsersUseCaseImpl implements AssessmentCommentsUse
         searchUserAssessment.setNameRestaurantAssessment(userAssessment.getNameRestaurantAssessment());
         searchUserAssessment.setMessageAssessment(userAssessment.getMessageAssessment());
 
-        return searchUserAssessment;
+        return userAssessmentRepository.save(searchUserAssessment);
     }
 
-    @Override
+
     public void deleteAssessment(UUID id) {
         userAssessmentRepository.deleteById(id);
     }
