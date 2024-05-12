@@ -1,21 +1,39 @@
 package com.fiap.restaurant.core.domain.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Builder
+@Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserAssessment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
+    @NotEmpty(message = "campo não pode estar vazio")
     private String nameUser;
+    @Column(nullable = false)
+    @NotEmpty(message = "campo não pode estar vazio")
     private String messageAssessment;
+    @Column(nullable = false)
+    @NotEmpty(message = "campo não pode estar vazio")
     private String nameRestaurantAssessment;
+
     private LocalDateTime dateVisitedRestaurant;
-    private LocalDateTime dateAssessment;
-    private int likes;
+    @Builder.Default
+    private LocalDateTime dateAssessment = LocalDateTime.now();
+    @Builder.Default
+    private int likes=0;
     public Long getId() {
         return id;
     }
@@ -68,25 +86,9 @@ public class UserAssessment {
         return likes;
     }
 
-    public void setLike(int like) {
+    public void setLike(int likes) {
         this.likes = likes;
     }
-
-    public UserAssessment(){
-
-    }
-    public UserAssessment(Long id, String nameUser, String messageAssessment, String nameRestaurantAssessment, LocalDateTime dateVisitedRestaurant, LocalDateTime dateAssessment, int like) {
-        this.id = id;
-        this.nameUser = nameUser;
-        this.messageAssessment = messageAssessment;
-        this.nameRestaurantAssessment = nameRestaurantAssessment;
-        this.dateVisitedRestaurant = dateVisitedRestaurant;
-        this.dateAssessment = dateAssessment;
-        this.likes = likes;
-    }
-
-
-
 
 
 }
