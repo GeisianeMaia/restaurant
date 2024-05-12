@@ -11,8 +11,8 @@ import java.util.UUID;
 public class Restaurant {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
     private String address;
@@ -24,7 +24,7 @@ public class Restaurant {
 
     public Restaurant() {
     }
-    public Restaurant(UUID id, String name, String address, String typeKitchen, String hoursOpening, String daysWeekOpening, int limitPeople) {
+    public Restaurant(Long id, String name, String address, String typeKitchen, String hoursOpening, String daysWeekOpening, int limitPeople) {
 
         if(name.isEmpty() || address.isEmpty() || typeKitchen.isEmpty() || hoursOpening.isEmpty() || daysWeekOpening.isEmpty() || limitPeople <= 0){
             throw new IllegalArgumentException("Campo não pode estar vazio.");
@@ -87,14 +87,14 @@ public class Restaurant {
     }
 
 
-    public Restaurant(UUID id) {
+    public Restaurant(Long id) {
         this.id = id;
     }
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

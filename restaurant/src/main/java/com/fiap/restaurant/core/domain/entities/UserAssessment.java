@@ -8,19 +8,19 @@ import java.util.UUID;
 @Entity
 public class UserAssessment {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nameUser;
     private String messageAssessment;
     private String nameRestaurantAssessment;
     private LocalDateTime dateVisitedRestaurant;
     private LocalDateTime dateAssessment;
-    private int like;
-    public UUID getId() {
+    private int likes;
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -65,24 +65,24 @@ public class UserAssessment {
     }
 
     public int getLike() {
-        return like;
+        return likes;
     }
 
     public void setLike(int like) {
-        this.like = like;
+        this.likes = likes;
     }
 
     public UserAssessment(){
 
     }
-    public UserAssessment(UUID id, String nameUser, String messageAssessment, String nameRestaurantAssessment, LocalDateTime dateVisitedRestaurant, LocalDateTime dateAssessment, int like) {
+    public UserAssessment(Long id, String nameUser, String messageAssessment, String nameRestaurantAssessment, LocalDateTime dateVisitedRestaurant, LocalDateTime dateAssessment, int like) {
         this.id = id;
         this.nameUser = nameUser;
         this.messageAssessment = messageAssessment;
         this.nameRestaurantAssessment = nameRestaurantAssessment;
         this.dateVisitedRestaurant = dateVisitedRestaurant;
         this.dateAssessment = dateAssessment;
-        this.like = like;
+        this.likes = likes;
     }
 
 
