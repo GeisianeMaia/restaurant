@@ -11,5 +11,4 @@ import java.util.UUID;
 public interface UserAssessmentRepository  extends JpaRepository<UserAssessment, UUID> {
     Optional<UserAssessment> findById(long id);
 
-    <T> void findById(Set<T> singleton);
 }
